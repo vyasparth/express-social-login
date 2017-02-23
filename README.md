@@ -10,3 +10,5 @@ Node Passport Authentication
 
 4) For Google -->
 	- Follow this https://developers.google.com/identity/sign-in/web/devconsole-project?authuser=2 & get the AppId & secret key
+	- Set the javascript origin url as - http://localhost:3000 & Authorized redirect URI as http://localhost:3000/auth/google/callback
+	- Enable the google plus API from the APIs library
