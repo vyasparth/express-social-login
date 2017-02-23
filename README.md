@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Node Passport Authentication
 
 1) Do an npm install to install all the dependencies
