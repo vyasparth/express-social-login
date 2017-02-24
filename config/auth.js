@@ -3,24 +3,35 @@
 // expose our config directly to our application using module.exports
 module.exports = {
 
-    'facebookAuth' : {
-        'clientID'        : '', // your App ID
-        'clientSecret'    : '', // your App Secret
-        'callbackURL'     : 'http://localhost:3000/auth/facebook/callback',
+    'facebookAuth': {
+        'clientID': '', // your App ID
+        'clientSecret': '', // your App Secret
+        'callbackURL': 'http://localhost:3000/auth/facebook/callback',
         'profileURL': 'https://graph.facebook.com/v2.5/me?fields=first_name,last_name,email'
 
     },
 
-    'twitterAuth' : {
-        'consumerKey'        : 'your-consumer-key-here',
-        'consumerSecret'     : 'your-client-secret-here',
-        'callbackURL'        : 'http://localhost:3000/auth/twitter/callback'
+    'googleAuth': {
+        'clientID': '', // your Client ID
+        'clientSecret': '', // your Client Secret
+        'callbackURL': 'http://localhost:3000/auth/google/callback'
     },
 
-    'googleAuth' : {
-        'clientID'         : '', // your Client ID
-        'clientSecret'     : '', // your Client Secret
-        'callbackURL'      : 'http://localhost:3000/auth/google/callback'
-    }
+    'instagramAuth': {
+        'clientID': '', // your App ID
+        'clientSecret': '', // your App Secret
+        'callbackURL': 'http://127.0.0.1:3000/auth/instagram/callback'
+    },
 
+    'githubAuth': {
+        'clientID': '', // your App ID
+        'clientSecret': '', // your App Secret
+        'callbackURL': "http://localhost:3000/auth/github/callback"
+    },
+
+    'twitterAuth': {
+        'consumerKey': '', // your Consumer Key
+        'consumerSecret': '', // your Consumer Secret
+        'callbackURL': "http://localhost:3000/auth/twitter/callback"
+    },
 };

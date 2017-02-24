@@ -5,6 +5,9 @@ var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var FacebookService = require('../app/helpers/FacebookService');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var InstagramStrategy = require('passport-instagram').Strategy;
+var GithubStrategy = require('passport-github2').Strategy;
+var TwitterStrategy = require('passport-twitter').Strategy;
 
 // load up the user model
 var User = require('../app/models/user');
@@ -35,8 +38,6 @@ module.exports = function(passport) {
    passport.use(new FacebookStrategy(fbStrategy,
       function(req, token, refreshToken, profile, done) {
 
-         console.log(token);
-         console.log(profile);
          var apiPath = '/me/friends';
          // asynchronous
          process.nextTick(function() {
@@ -126,4 +127,111 @@ module.exports = function(passport) {
          });
 
       }));
+
+   var githubStrategy = configAuth.githubAuth;
+   passport.use(new GithubStrategy({
+         clientID: githubStrategy.clientID,
+         clientSecret: githubStrategy.clientSecret,
+         callbackURL: githubStrategy.callbackURL
+      },
+      function(accessToken, refreshToken, profile, done) {
+
+         // done();
+         // make the code asynchronous
+         // User.findOne won't fire until we have all our data back from Github
+         process.nextTick(function() {
+
+            // try to find the user based on their Github id
+            User.findOne({
+               'github.id': profile.id
+            }, function(err, user) {
+               if (err)
+                  return done(err);
+
+               if (user) {
+
+                  // if a user is found, log them in
+                  return done(null, user);
+               } else {
+                  // if the user isnt in our database, create a new user
+                  var newUser = new User();
+
+                  // set all of the relevant information
+                  newUser.github.id = profile.id;
+                  newUser.github.token = accessToken;
+                  newUser.github.name = profile.displayName;
+                  newUser.github.username = profile.username;
+                  newUser.github.email = profile.emails[0].value; // pull the first email
+                  newUser.github.public_repos = profile._json.public_repos;
+                  newUser.github.public_gists = profile._json.public_gists;
+                  newUser.github.followers = profile._json.followers;
+                  newUser.github.following = profile._json.following;
+
+                  // save the user
+                  newUser.save(function(err) {
+                     if (err)
+                        throw err;
+                     return done(null, newUser);
+                  });
+               }
+            });
+         });
+      }
+   ));
+
+   var twitterStrategy = configAuth.twitterAuth;
+   passport.use(new TwitterStrategy({
+         consumerKey: twitterStrategy.consumerKey,
+         consumerSecret: twitterStrategy.consumerSecret,
+         callbackURL: twitterStrategy.callbackURL
+      },
+      function(accessToken, refreshToken, profile, done) {
+
+         // make the code asynchronous
+         // User.findOne won't fire until we have all our data back from Twitter
+         User.findOne({
+            'twitter.id': profile.id
+         }, function(err, user) {
+            if (err) {
+               console.log(err); // handle errors!
+            }
+            if (!err && user !== null) {
+               done(null, user);
+            } else {
+               newUser = new User();
+
+               newUser.twitter.id = profile.id;
+               newUser.twitter.token = accessToken;
+               newUser.twitter.name = profile._json.name;
+               newUser.twitter.followers_count = profile._json.followers_count;
+               newUser.twitter.friends_count = profile._json.friends_count;
+               newUser.twitter.screen_name = profile._json.screen_name;
+               newUser.twitter.favourites_count = profile._json.favourites_count;
+               newUser.twitter.photo = profile.photos[0].value;
+
+               newUser.save(function(err) {
+                  if (err) {
+                     throw err; // handle errors!
+                  } else {
+                     done(null, user);
+                  }
+               });
+            }
+         });
+      }
+   ));
+
+   var instagramStrategy = configAuth.instagramAuth;
+   passport.use(new InstagramStrategy({
+         clientID: instagramStrategy.clientID,
+         clientSecret: instagramStrategy.clientSecret,
+         callbackURL: instagramStrategy.callbackURL
+      },
+      function(accessToken, refreshToken, profile, done) {
+
+         process.nextTick(function() {
+            return done(null, profile);
+         });
+      }
+   ));
 };
