@@ -4,7 +4,7 @@
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-var InstagramStrategy = require('passport-instagram').Strategy;
+// var InstagramStrategy = require('passport-instagram').Strategy;
 var GithubStrategy = require('passport-github2').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
 
@@ -228,17 +228,17 @@ module.exports = function(passport) {
       }
    ));
 
-   var instagramStrategy = configAuth.instagramAuth;
-   passport.use(new InstagramStrategy({
-         clientID: instagramStrategy.clientID,
-         clientSecret: instagramStrategy.clientSecret,
-         callbackURL: instagramStrategy.callbackURL
-      },
-      function(accessToken, refreshToken, profile, done) {
+   // var instagramStrategy = configAuth.instagramAuth;
+   // passport.use(new InstagramStrategy({
+   //       clientID: instagramStrategy.clientID,
+   //       clientSecret: instagramStrategy.clientSecret,
+   //       callbackURL: instagramStrategy.callbackURL
+   //    },
+   //    function(accessToken, refreshToken, profile, done) {
 
-         process.nextTick(function() {
-            return done(null, profile);
-         });
-      }
-   ));
+   //       process.nextTick(function() {
+   //          return done(null, profile);
+   //       });
+   //    }
+   // ));
 };

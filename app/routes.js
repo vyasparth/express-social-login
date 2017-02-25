@@ -58,20 +58,20 @@ module.exports = function(app, passport) {
     // send to instagram to do the authentication
     // profile gets us their basic information including their name
     // email gets their emails
-    app.get('/auth/instagram',
-        passport.authenticate('instagram'),
-        function(req, res) {
+    // app.get('/auth/instagram',
+    //     passport.authenticate('instagram'),
+    //     function(req, res) {
 
-        });
+    //     });
 
-    // the callback after instagram has authenticated the user
-    app.get('/auth/instagram/callback',
-        passport.authenticate('instagram', {
-            failureRedirect: '/'
-        }),
-        function(req, res) {
-            res.redirect('/profile');
-        });
+    // // the callback after instagram has authenticated the user
+    // app.get('/auth/instagram/callback',
+    //     passport.authenticate('instagram', {
+    //         failureRedirect: '/'
+    //     }),
+    //     function(req, res) {
+    //         res.redirect('/profile');
+    //     });
 
     // =====================================
     // Github ROUTES =======================
