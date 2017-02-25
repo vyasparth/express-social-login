@@ -3,7 +3,6 @@
 // load all the things we need
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
-var FacebookService = require('../app/helpers/FacebookService');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var InstagramStrategy = require('passport-instagram').Strategy;
 var GithubStrategy = require('passport-github2').Strategy;
@@ -63,7 +62,14 @@ module.exports = function(passport) {
                   newUser.facebook.id = profile.id; // set the users facebook id                   
                   newUser.facebook.token = token; // we will save the token that facebook provides to the user                    
                   newUser.facebook.name = profile.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
-                  newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
+                  
+                  if(profile.hasOwnProperty('email')) {
+
+                     newUser.facebook.email = '';
+                  } else {
+
+                     newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
+                  }
 
                   // save our user to the database
                   newUser.save(function(err) {
@@ -139,6 +145,7 @@ module.exports = function(passport) {
          // done();
          // make the code asynchronous
          // User.findOne won't fire until we have all our data back from Github
+
          process.nextTick(function() {
 
             // try to find the user based on their Github id

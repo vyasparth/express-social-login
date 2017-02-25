@@ -28,17 +28,17 @@
             <div class="col-sm-6">
                 <div class="well">
                     <h3 class="text-primary"><span class="fa fa-facebook"></span> Facebook</h3>
-
+                    <script>
+                        var token = <%= user.facebook.token %>            
+                    </script>
                     <p>
-                        <strong>id</strong>:
-                        <%= user.facebook.id %><br>
-                            <strong>token</strong>:
-                            <%= user.facebook.token %><br>
-                                <strong>email</strong>:
-                                <%= user.facebook.email %><br>
-                                    <strong>name</strong>:
-                                    <%= user.facebook.name %>
+                        <strong>id</strong>: <%= user.facebook.id %><br>
+                        <strong>token</strong>: <%= user.facebook.token %><br>
+                        <strong>email</strong>: <%= user.facebook.email %><br>
+                        <strong>name</strong>: <%= user.facebook.name %>
                     </p>
+
+                    <a href="/friends/facebook/<%= user.facebook.id %>/<%= user.facebook.token %>" class="btn btn-primary"><span class="fa fa-facebook"></span> Friends</a>
 
                 </div>
             </div>
@@ -47,16 +47,14 @@
             <div class="col-sm-6">
                 <div class="well">
                     <h3 class="text-danger"><span class="fa fa-google-plus"></span> Google</h3>
-
+                    <form>
+                    </form>
                     <p>
-                        <strong>id</strong>:
-                        <%= user.google.id %><br>
-                            <strong>token</strong>:
-                            <%= user.google.token %><br>
-                                <strong>email</strong>:
-                                <%= user.google.email %><br>
-                                    <strong>name</strong>:
-                                    <%= user.google.name %>
+                        <strong>id</strong>: <%= user.google.id %><br>
+                        <strong>token</strong>: <%= user.google.token %><br>
+                        <strong>email</strong>: <%= user.google.email %><br>
+                        <strong>name</strong>: <%= user.google.name %>
+                        <a href="/friends/google/<%= user.google.token %>" class="btn btn-primary"><span class="fa fa-google-plus"></span> Friends</a>
                     </p>
 
                 </div>
@@ -66,26 +64,20 @@
             <div class="col-sm-6">
                 <div class="well">
                     <h3 class="text-primart"><span class="fa fa-github"></span> Github</h3>
+
                     <p>
-                        <strong>id</strong>:
-                        <%= user.github.id %><br>
-                            <strong>token</strong>:
-                            <%= user.github.token %><br>
-                                <strong>name</strong>:
-                                <%= user.github.name %><br>
-                                    <strong>username</strong>:
-                                    <%= user.github.username %><br>
-                                        <strong>email</strong>:
-                                        <%= user.github.email %><br>
-                                            <strong>public_repos</strong>:
-                                            <%= user.github.public_repos %><br>
-                                                <strong>public_gists</strong>:
-                                                <%= user.github.public_gists %><br>
-                                                    <strong>followers</strong>:
-                                                    <%= user.github.followers %><br>
-                                                        <strong>following</strong>:
-                                                        <%= user.github.following %><br>
+                        <strong>id</strong>: <%= user.github.id %><br>
+                        <strong>token</strong>: <%= user.github.token %><br>
+                        <strong>name</strong>: <%= user.github.name %><br>
+                        <strong>username</strong>: <%= user.github.username %><br>
+                        <strong>email</strong>: <%= user.github.email %><br>
+                        <strong>public_repos</strong>: <%= user.github.public_repos %><br>
+                        <strong>public_gists</strong>: <%= user.github.public_gists %><br>
+                        <strong>followers</strong>: <%= user.github.followers %><br>
+                        <strong>following</strong>: <%= user.github.following %><br>
                     </p>
+                    
+                    <a href="/friends/github/<%= user.github.username %>" class="btn btn-danger"><span class="fa fa-github"></span> Friends</a>
 
                 </div>
             </div>
@@ -94,23 +86,21 @@
             <div class="col-sm-6">
                 <div class="well">
                     <h3 class="text-danger"><span class="fa fa-twitter"></span> Twitter</h3>
+
+                    <script>
+                        var token = <%= user.twitter.token %>            
+                    </script>
+
                     <p>
-                        <strong>id</strong>:
-                        <%= user.twitter.id %><br>
-                            <strong>token</strong>:
-                            <%= user.twitter.token %><br>
-                                <strong>name</strong>:
-                                <%= user.twitter.name %><br>
-                                    <strong>followers_count</strong>:
-                                    <%= user.twitter.followers_count %><br>
-                                        <strong>friends_count</strong>:
-                                        <%= user.twitter.friends_count %><br>
-                                            <strong>screen_name</strong>:
-                                            <%= user.twitter.screen_name %><br>
-                                                <strong>favourites_count</strong>:
-                                                <%= user.twitter.favourites_count %><br>
-                                                    <strong>photo</strong>:
-                                                    <%= user.twitter.photo %><br>
+                        <strong>id</strong>: <%= user.twitter.id %><br>
+                        <strong>token</strong>: <%= user.twitter.token %><br>
+                        <strong>name</strong>: <%= user.twitter.name %><br>
+                        <strong>followers_count</strong>: <%= user.twitter.followers_count %><br>
+                        <strong>friends_count</strong>: <%= user.twitter.friends_count %><br>
+                        <strong>screen_name</strong>: <%= user.twitter.screen_name %><br>
+                        <strong>favourites_count</strong>: <%= user.twitter.favourites_count %><br>
+                        <strong>photo</strong>: <%= user.twitter.photo %><br>
+                        <a href="/friends/twitter" class="btn btn-danger"><span class="fa fa-twitter"></span> Friends</a>
                     </p>
 
                 </div>

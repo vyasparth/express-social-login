@@ -18,20 +18,20 @@ module.exports = {
     },
 
     'instagramAuth': {
-        'clientID': '', // your App ID
-        'clientSecret': '', // your App Secret
+        'clientID': '',
+        'clientSecret': ' ',
         'callbackURL': 'http://127.0.0.1:3000/auth/instagram/callback'
     },
 
     'githubAuth': {
-        'clientID': '', // your App ID
-        'clientSecret': '', // your App Secret
+        'clientID': '',
+        'clientSecret': '',
         'callbackURL': "http://localhost:3000/auth/github/callback"
     },
 
     'twitterAuth': {
-        'consumerKey': '', // your Consumer Key
-        'consumerSecret': '', // your Consumer Secret
+        'consumerKey': '',
+        'consumerSecret': '',
         'callbackURL': "http://localhost:3000/auth/twitter/callback"
     },
 };

@@ -1,4 +1,8 @@
 // app/routes.js
+    
+var FacebookController = require('./controllers/FacebookController.js');
+var GithubController = require('./controllers/GithubController.js');
+
 module.exports = function(app, passport) {
 
     // route for home page
@@ -13,12 +17,11 @@ module.exports = function(app, passport) {
         });
     });
 
-    // route for showing the profile page
-    app.get('/friend_list', isLoggedIn, function(req, res) {
-        res.render('friend_list.ejs', {
-            user: req.friend_list // get the user out of session and pass to template
-        });
-    });
+    // route for showing the facebook friends
+    app.get('/friends/facebook/:id/:token', isLoggedIn, FacebookController.get_friend_list_from_facebook);
+
+    // route for showing the github followers
+    app.get('/friends/github/:username', isLoggedIn, GithubController.get_follower_list_from_github);
 
     // =====================================
     // FACEBOOK ROUTES =====================
