@@ -1,4 +1,4 @@
-Node Passport Authentication
+Node Passport Authentication for google, facebook, twitter & github.
 
 1) Do an npm install to install all the dependencies
 
