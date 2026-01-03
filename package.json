@@ -3,11 +3,11 @@
   "main": "server.js",
   "dependencies": {
     "bcrypt-nodejs": "latest",
-    "body-parser": "~1.15.2",
+    "body-parser": "~1.20.4",
     "connect-flash": "~0.1.1",
     "cookie-parser": "~1.4.3",
     "ejs": "~2.5.2",
-    "express": "~4.14.0",
+    "express": "~4.22.0",
     "express-session": "~1.14.1",
     "https": "^1.0.0",
     "lodash": "^4.17.4",
